@@ -19,7 +19,6 @@ Enemy.prototype.update = function(dt) {
     // which will ensure the game runs at the same speed for
     // all computers.
 
-
     // The following method will check if enemy is still within tiles that are visible to player. If not, then the enemy's x and y pos needs to be reset so it can move across the tiles again (loop).
 
     // If enemy is still within tile boundaries
@@ -66,7 +65,11 @@ Enemy.prototype.render = function() {
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
 
+// Hero object goes here
+    // only need one since there will only ever be one player at a time playing
 
+// allEnemies array goes here
+// For each enemy, create and push new enemy object into the array above
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
