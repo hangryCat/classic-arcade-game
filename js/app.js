@@ -41,15 +41,16 @@ Enemy.prototype.render = function() {
 class Hero {
     constructor() {
         // The x and y coordinates are set to 0 which is the top left corner of canvas
-        this.x = 0;
-        this.y = 0;
+        this.x = 100 * 2;
+        this.y = 80 * 5;
         this.sprite = 'images/char-boy.png';
   }
     render() {
         ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
         // ctx is for 2d canvas
         // drawImage method has few arguments/parameter
-        // The Resources object uses the get method to cache the sprite image as the first argument. The other 2 arguments are the x and y coordinates specified in the constructor above (0,0).
+        // The Resources object uses the get method to cache the sprite image as the first argument.
+        // The other 2 arguments are the x and y coordinates specified in the constructor above.
   }
     handleInput(keyPress) {
         // The following could be achieved using a chain of if else statements as well
