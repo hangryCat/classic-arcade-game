@@ -47,6 +47,9 @@ Enemy.prototype.render = function() {
             // handleInput()
                 // Update player's x and y coordinates according to player input.
                     // Handles player's keyboard inputs – The event listener will fire this method and make the necessary changes to the x and y position that corresponds to the direction  player is moving.
+            // resetHero()
+                // Set x and y to starting position of x and y
+                    // For when player makes contact with an enemy or reaches winning tile
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
