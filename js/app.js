@@ -14,9 +14,20 @@ var Enemy = function(x, y, speed) {
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
 Enemy.prototype.update = function(dt) {
+    // Enemy is not controlled by player so automated code is necessary
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
+
+
+    // The following method will check if enemy is still within tiles that are visible to player. If not, then the enemy's x and y pos needs to be reset so it can move across the tiles again (loop).
+
+    // If enemy is still within tile boundaries
+        // Move forward
+        // Increment x pos by (speed * dt)
+    // Else
+        // Reset enemy position to started
+            // Enemy is not controlled by player
 };
 
 // Draw the enemy on the screen, required method for game
