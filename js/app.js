@@ -41,6 +41,8 @@ Enemy.prototype.render = function() {
                     // Did player x and y collide with enemy x and y?
                 // Check for win
                     // Did player's x and y pos reach the correct/final tile?
+            // render() – This method will draw/redraw hero to board every loop through the main game loop. A sprite image of hero and a x/y coord pos.
+                // Draw player sprite on current x and y coordinate
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
