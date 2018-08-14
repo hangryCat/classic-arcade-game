@@ -40,13 +40,19 @@ Enemy.prototype.render = function() {
 
 class Hero {
     constructor() {
-        // The startX/Y properties are there to be referenced later with the reset method
-        this.startX = 100 * 2;
-        this.startY = 80 * 2;
-        // The x and y properties are declared so it can be changed and not affect the startX/Y properties
-        this.x = this.startX;
-        this.y = this.startY;
-        this.sprite = 'images/char-boy.png';
+      // Order of what's declared first/last matters
+
+      // horizonStep is the distance between one block to another from the x axis
+      // vertStep is the distance between the blocks on the y axis
+      this.horizonStep = 101;
+      this.vertStep = 83;
+      // The following is multiplied by 2 & 5 and moves the player to the tile accordingly
+      this.startX = this.horizonStep * 2;
+      this.startY = this.vertStep * 5;
+      // This sets the x and y axis of the player to the starting point of startX/Y
+      this.x = this.startX;
+      this.y = this.startY;
+      this.sprite = 'images/char-boy.png';
   }
     render() {
         ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
@@ -62,19 +68,19 @@ class Hero {
         switch(keyPress) {
             case 'left':
             // Subtracting x would move the character left
-                this.x -= 100;
+                this.x -= this.horizonStep;
                 break;
             case 'right':
             // Adding to x would move the character right
-                this.x += 100;
+                this.x += this.horizonStep;
                 break;
             case 'up':
             // Decreasing y would move the character up (remember top left corner would be 0,0).
-                this.y -= 80;
+                this.y -= this.vertStep;
                 break;
             case 'down':
             // Increasing y would  move the character down
-                this.y += 80;
+                this.y += this.vertStep;
                 break;
         }
     }
