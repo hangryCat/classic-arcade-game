@@ -40,16 +40,19 @@ Enemy.prototype.render = function() {
 
 class Hero {
     constructor() {
-        // The x and y coordinates are set to 0 which is the top left corner of canvas
-        this.x = 100 * 2;
-        this.y = 80 * 5;
+        // The startX/Y properties are there to be referenced later with the reset method
+        this.startX = 100 * 2;
+        this.startY = 80 * 2;
+        // The x and y properties are declared so it can be changed and not affect the startX/Y properties
+        this.x = this.startX;
+        this.y = this.startY;
         this.sprite = 'images/char-boy.png';
   }
     render() {
         ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
         // ctx is for 2d canvas
         // drawImage method has few arguments/parameter
-        // The Resources object uses the get method to cache the sprite image as the first argument.
+        // The Resources object uses the get method to cache the sprite image as the first argument.\
         // The other 2 arguments are the x and y coordinates specified in the constructor above.
   }
     handleInput(keyPress) {
