@@ -51,7 +51,31 @@ class Hero {
         // drawImage method has few arguments/parameter
         // The Resources object uses the get method to cache the sprite image as the first argument. The other 2 arguments are the x and y coordinates specified in the constructor above (0,0).
   }
+    handleInput(keyPress) {
+        // The following could be achieved using a chain of if else statements as well
+        // This switch statement checks the value of keyPress
+            // If there is a match, then the following code will execute
+        switch(keyPress) {
+            case 'left':
+            // Subtracting x would move the character left
+                this.x -= 100;
+                break;
+            case 'right':
+            // Adding to x would move the character right
+                this.x += 100;
+                break;
+            case 'up':
+            // Decreasing y would move the character up (remember top left corner would be 0,0).
+                this.y -= 80;
+                break;
+            case 'down':
+            // Increasing y would  move the character down
+                this.y += 80;
+                break;
+        }
+    }
 }
+
 // HERO CLASS
     // CONSTRUCTOR
         // PROPERTIES
