@@ -43,7 +43,7 @@ class Hero {
         // The x and y coordinates are set to 0 which is the top left corner of canvas
         this.x = 0;
         this.y = 0;
-        this.sprite = 'images/char-cat-girl.png';
+        this.sprite = 'images/char-boy.png';
   }
     render() {
         ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
