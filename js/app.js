@@ -38,6 +38,20 @@ Enemy.prototype.render = function() {
 // This class requires an update(), render() and
 // a handleInput() method.
 
+class Hero {
+    constructor() {
+        // The x and y coordinates are set to 0 which is the top left corner of canvas
+        this.x = 0;
+        this.y = 0;
+        this.sprite = 'images/char-cat-girl.png';
+  }
+    render() {
+        ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+        // ctx is for 2d canvas
+        // drawImage method has few arguments/parameter
+        // The Resources object uses the get method to cache the sprite image as the first argument. The other 2 arguments are the x and y coordinates specified in the constructor above (0,0).
+  }
+}
 // HERO CLASS
     // CONSTRUCTOR
         // PROPERTIES
