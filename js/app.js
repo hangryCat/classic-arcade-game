@@ -81,6 +81,10 @@ class Hero {
 
 // Hero object goes here
     // only need one since there will only ever be one player at a time playing
+const player = new Hero();
+    // The identifier "player" has to specifically be "player" because that's already referenced in engine.js
+        // If name doesn't match, error will pursue
+        // If want different name, all "player" identifier must be renamed in engine.js as well
 
 // allEnemies array goes here
 // For each enemy, create and push new enemy object into the array above
