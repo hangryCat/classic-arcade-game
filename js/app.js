@@ -1,9 +1,12 @@
 // Enemies our player must avoid
-var Enemy = function() {
-    // Variables applied to each of our instances go here,
-    // we've provided one for you to get started
-    this.x = 0;
-    this.y = 60; // centers the enemy
+var Enemy = function(x, y) {
+    // The x/y value is declared based on the values passed through via the enemy object
+
+    this.x = x;
+    // Centers the enemy
+    // The 'y' represents the argument being passed by the enemy bug object
+    // The number 60 pushes the bug down from wherever the bug currently is
+    this.y = y + 60;
     // This step property references the size of each tile horizontally
     // The enemy bug will only be moving horizontally
     this.step = 101;
@@ -156,10 +159,15 @@ const player = new Hero();
 
 // Empty allEnemies array
 const allEnemies = [];
-// First enemy object created from Enemy constructor
-const enemy1 = new Enemy();
-// enemy1 is pushed to allEnemies array
-allEnemies.push(enemy1);
+
+// Enemy bug object created from Enemy constructor
+// The arguments here will pass as values in the Enemy constructor
+const enemy1 = new Enemy(-101, 0);
+const enemy2 = new Enemy(200, 80);
+const enemy3 = new Enemy(400, 160);
+
+// Enemy bugs pushed to allEnemies array
+allEnemies.push(enemy1, enemy2, enemy3);
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
