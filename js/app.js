@@ -1,10 +1,9 @@
 // Enemies our player must avoid
-var Enemy = function(x, y, speed) {
+var Enemy = function() {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
-    this.x = x;
-    this.y = y;
-    this.speed = speed;
+    this.x = 0;
+    this.y = 0;
 
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
@@ -138,8 +137,12 @@ const player = new Hero();
         // If name doesn't match, error will pursue
         // If want different name, all "player" identifier must be renamed in engine.js as well
 
-// allEnemies array goes here
-// For each enemy, create and push new enemy object into the array above
+// Empty allEnemies array
+const allEnemies = [];
+// First enemy object created from Enemy constructor
+const enemy1 = new Enemy();
+// enemy1 is pushed to allEnemies array  
+allEnemies.push(enemy1);
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
