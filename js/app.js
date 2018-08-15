@@ -17,14 +17,24 @@ var Enemy = function() {
 Enemy.prototype.update = function(dt) {
     // Enemy is not controlled by player so automated code is necessary
     // You should multiply any movement by the dt parameter
-    // which will ensure the game runs at the same speed for
-    // all computers.
+    // which will ensure the game runs at the same speed for all computers
+        // dt is the function parameter
+        // dt is declared in the engine.js file under main() function
 
-    // The following method will check if enemy is still within tiles that are visible to player. If not, then the enemy's x and y pos needs to be reset so it can move across the tiles again (loop).
+    // The following method will check if enemy is still within tiles that are visible to player.
+    // If not, then the enemy's x and y pos needs to be reset so it can move across the tiles again (loop).
 
     // If enemy is still within tile boundaries
+    // The code will run if the enemy bug is stil within the boundaries
+    // The 5 represent the 6th tile right outside the boundary
+        // Starting from the 0 x axis (minus the 1st tile the bug is on 6 - 1 = 5)
+    if (this.x < this.step * 5) {
         // Move forward
         // Increment x pos by (speed * dt)
+        // Multiplying by dt will give the enemy bug a constant speed across the board
+            // This happens as the computer loops through the code
+        this.x += 200 * dt;
+    }
     // Else
         // Reset enemy position to started
             // Enemy is not controlled by player
