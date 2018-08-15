@@ -67,20 +67,38 @@ class Hero {
             // If there is a match, then the following code will execute
         switch(keyPress) {
             case 'left':
-            // Subtracting x would move the character left
-                this.x -= this.horizonStep;
+                // The left boundaries of the x axis is 0
+                // The player will not be able to move past 0 (out of boundaries)
+                if (this.x > 0) {
+                  // Subtracting x would move the character left
+                  this.x -= this.horizonStep;
+                }
                 break;
             case 'right':
-            // Adding to x would move the character right
-                this.x += this.horizonStep;
+                // Using the horizonStep prop help calculate the tiles
+                // Left most block starts at 0 and 1 step puts player at the 2nd tiles
+                // Therefore, 4 steps/tile over will reach the edge of boundaries
+                // If statement will result in false with any tiles beyond that 4th tile
+                if (this.x < this.horizonStep * 4) {
+                    // Adding to x would move the character right
+                    this.x += this.horizonStep;
+                }
                 break;
             case 'up':
-            // Decreasing y would move the character up (remember top left corner would be 0,0).
-                this.y -= this.vertStep;
+                // The y axis boundaries is 0
+                // The player will not be able to move past 0 (out of boundaries)
+                if (this.y > 0) {
+                    // Decreasing y would move the character up (remember top left corner would be 0,0).
+                    this.y -= this.vertStep;
+                }
                 break;
             case 'down':
-            // Increasing y would  move the character down
-                this.y += this.vertStep;
+                // See comment above for 'right'
+                // This is multiplied by 5 instead of 4 because there are more tiles horizontally
+                if (this.y < this.vertStep * 5) {
+                    // Increasing y would move the character down
+                    this.y += this.vertStep;
+                }
                 break;
         }
     }
