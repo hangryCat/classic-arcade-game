@@ -1,20 +1,20 @@
 // Enemies our player must avoid
-var Enemy = function(x, y) {
-    // The x/y value is declared based on the values passed through via the enemy object
-
+var Enemy = function(x, y, speed) {
+    // The x/y/speed value is declared based on the values passed through the enemy object
     this.x = x;
     // Centers the enemy
     // The 'y' represents the argument being passed by the enemy bug object
     // The number 60 pushes the bug down from wherever the bug currently is
-    this.y = y + 60;
+    this.y = y + 65;
+    // The speed property/value will be used to pass in the different speed of each enemy
+    this.speed = speed;
     // This step property references the size of each tile horizontally
-    // The enemy bug will only be moving horizontally
+    // The enemy bug will only be moving horizontally (x axis)
     this.step = 101;
     // The boundary for which the enemy bug can move within
     this.boundary = this.step * 5;
     this.resetEnemy = this.step * -1;
-    // The image/sprite for our enemies, this uses
-    // a helper we've provided to easily load images
+    // The image/sprite for our enemies, this uses a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
 };
 
@@ -39,7 +39,7 @@ Enemy.prototype.update = function(dt) {
         // Increment x pos by (speed * dt)
         // Multiplying by dt will give the enemy bug a constant speed across the board
             // This happens as the computer loops through the code
-        this.x += 200 * dt;
+        this.x += this.speed * dt;
     }
     else {
       // Reset enemy position to starting point
@@ -162,9 +162,9 @@ const allEnemies = [];
 
 // Enemy bug object created from Enemy constructor
 // The arguments here will pass as values in the Enemy constructor
-const enemy1 = new Enemy(-101, 0);
-const enemy2 = new Enemy(200, 80);
-const enemy3 = new Enemy(400, 160);
+const enemy1 = new Enemy(-101, 0, 200);
+const enemy2 = new Enemy((-101 * 4), 80, 300);
+const enemy3 = new Enemy((-101 * 2), 160, 400);
 
 // Enemy bugs pushed to allEnemies array
 allEnemies.push(enemy1, enemy2, enemy3);
