@@ -3,7 +3,7 @@ var Enemy = function() {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
     this.x = 0;
-    this.y = 0;
+    this.y = 60; // centers the enemy
     // This step property references the size of each tile horizontally
     // The enemy bug will only be moving horizontally
     this.step = 101;
