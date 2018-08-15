@@ -7,6 +7,8 @@ var Enemy = function() {
     // This step property references the size of each tile horizontally
     // The enemy bug will only be moving horizontally
     this.step = 101;
+    // The boundary for which the enemy bug can move within
+    this.boundary = this.step * 5;
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
@@ -28,16 +30,18 @@ Enemy.prototype.update = function(dt) {
     // The code will run if the enemy bug is stil within the boundaries
     // The 5 represent the 6th tile right outside the boundary
         // Starting from the 0 x axis (minus the 1st tile the bug is on 6 - 1 = 5)
-    if (this.x < this.step * 5) {
+    if (this.x < this.boundary) {
         // Move forward
         // Increment x pos by (speed * dt)
         // Multiplying by dt will give the enemy bug a constant speed across the board
             // This happens as the computer loops through the code
         this.x += 200 * dt;
     }
-    // Else
-        // Reset enemy position to started
-            // Enemy is not controlled by player
+    else {
+      // Reset enemy position to starting point
+      // The above if statement will continue to loop
+      this.x = this.step * -1;
+    }
 };
 
 // Draw the enemy on the screen, required method for game
