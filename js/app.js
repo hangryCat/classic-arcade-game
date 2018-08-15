@@ -4,7 +4,9 @@ var Enemy = function() {
     // we've provided one for you to get started
     this.x = 0;
     this.y = 0;
-
+    // This step property references the size of each tile horizontally
+    // The enemy bug will only be moving horizontally
+    this.step = 101;
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
@@ -141,7 +143,7 @@ const player = new Hero();
 const allEnemies = [];
 // First enemy object created from Enemy constructor
 const enemy1 = new Enemy();
-// enemy1 is pushed to allEnemies array  
+// enemy1 is pushed to allEnemies array
 allEnemies.push(enemy1);
 
 // This listens for key presses and sends the keys to your
