@@ -9,6 +9,7 @@ var Enemy = function() {
     this.step = 101;
     // The boundary for which the enemy bug can move within
     this.boundary = this.step * 5;
+    this.resetEnemy = this.step * -1;
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
@@ -40,7 +41,7 @@ Enemy.prototype.update = function(dt) {
     else {
       // Reset enemy position to starting point
       // The above if statement will continue to loop
-      this.x = this.step * -1;
+      this.x = this.resetEnemy;
     }
 };
 
