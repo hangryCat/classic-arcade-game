@@ -90,11 +90,10 @@ var Engine = (function(global) {
      * render methods.
      */
     function updateEntities(dt) {
-//!!!! TEMPORARY COMMENT; CURRENTLY NO allEnemies ARRAY OR update() CREATED
 
-        // allEnemies.forEach(function(enemy) {
-        //     enemy.update(dt);
-        // });
+        allEnemies.forEach(function(enemy) {
+            enemy.update(dt);
+        });
         // player.update();
     }
 
@@ -152,10 +151,9 @@ var Engine = (function(global) {
          * the render function you have defined.
          */
 
-//!!!! TEMPORARY COMMENT; CURRENTLY NO allEnemies ARRAY CREATED
-        // allEnemies.forEach(function(enemy) {
-        //     enemy.render();
-        // });
+        allEnemies.forEach(function(enemy) {
+            enemy.render();
+        });
 
         player.render();
     }
