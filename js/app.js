@@ -86,6 +86,7 @@ class Hero {
         for (let enemy of allEnemies) {
             if ((this.y === enemy.y) && (enemy.x + enemy.step/2 > this.x) && (enemy.x < this.x + this.vertStep/2)) {
                 console.log("COLLISION!");
+                this.resetHero();
             }
         }
     }
@@ -138,6 +139,12 @@ class Hero {
                 }
                 break;
         }
+    }
+    // Once certain conditions are met (collision, win)
+    // Player will reset to starting position
+    resetHero() {
+      this.x = this.startX;
+      this.y = this.startY;
     }
 }
 
