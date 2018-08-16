@@ -53,10 +53,6 @@ Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
-// Now write your own player class
-// This class requires an update(), render() and
-// a handleInput() method.
-
 class Hero {
     constructor() {
       // Order of what's declared first/last matters
@@ -65,21 +61,43 @@ class Hero {
       // vertStep is the distance between the blocks on the y axis
       this.horizonStep = 101;
       this.vertStep = 83;
-      // The following is multiplied by 2 & 5 and moves the player to the tile accordingly
+      // The following is multiplied by 2 & 4 and moves the player to the tile accordingly
       this.startX = this.horizonStep * 2;
-      this.startY = this.vertStep * 5;
+      this.startY = (this.vertStep * 4) + 65;
       // This sets the x and y axis of the player to the starting point of startX/Y
       this.x = this.startX;
       this.y = this.startY;
       this.sprite = 'images/char-boy.png';
   }
+    update() {
+        // Access to player's x and y position is available within this constructor
+        // However, the enemy objects' x and y position is not
+        // In order to access it, a for let-of loop is used
+        // this.y === enemy.y
+            // Checks to see if the bug and player is on the same y axis
+        // enemy.x + enemy.step > this.x
+            // Checks to see if the enemy's right side is > than the player's left side
+        // enemy.x < this.x + this.vertStep
+            // Checks to see if the enemy is < than the player's right side
+        // The steps for both enemy/player is reduced by half
+            // This way, the area of collision is smaller
+            // To the user, the player and enemy actually collides
+            // Otherwise, it looks as though the player/enemy doesn't collide
+        for (let enemy of allEnemies) {
+            if ((this.y === enemy.y) && (enemy.x + enemy.step/2 > this.x) && (enemy.x < this.x + this.vertStep/2)) {
+                console.log("COLLISION!");
+            }
+        }
+    }
+
     render() {
         ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
         // ctx is for 2d canvas
         // drawImage method has few arguments/parameter
         // The Resources object uses the get method to cache the sprite image as the first argument.\
         // The other 2 arguments are the x and y coordinates specified in the constructor above.
-  }
+    }
+
     handleInput(keyPress) {
         // The following could be achieved using a chain of if else statements as well
         // This switch statement checks the value of keyPress
@@ -114,7 +132,7 @@ class Hero {
             case 'down':
                 // See comment above for 'right'
                 // This is multiplied by 5 instead of 4 because there are more tiles horizontally
-                if (this.y < this.vertStep * 5) {
+                if (this.y < this.vertStep * 4) {
                     // Increasing y would move the character down
                     this.y += this.vertStep;
                 }
@@ -162,9 +180,11 @@ const allEnemies = [];
 
 // Enemy bug object created from Enemy constructor
 // The arguments here will pass as values in the Enemy constructor
+// The value of x and y needs to be the same as what's declared above
+// To put the bug in a different spot, just multiply the value
 const enemy1 = new Enemy(-101, 0, 200);
-const enemy2 = new Enemy((-101 * 4), 80, 300);
-const enemy3 = new Enemy((-101 * 2), 160, 400);
+const enemy2 = new Enemy((-101 * 3), 83, 300);
+const enemy3 = new Enemy(-101, (83 * 2), 400);
 
 // Enemy bugs pushed to allEnemies array
 allEnemies.push(enemy1, enemy2, enemy3);
