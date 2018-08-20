@@ -94,6 +94,7 @@ class Hero {
         // 65 is the offset to center the player
         // 65 - 83 = -18 which is the y-coordinates of the river tiles
         if (this.y === -18) {
+          this.victory = true;
             alert("CONGRATULATIONS!");
             this.resetHero();
         }
