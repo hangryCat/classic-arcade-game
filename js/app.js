@@ -67,6 +67,8 @@ class Hero {
       // This sets the x and y axis of the player to the starting point of startX/Y
       this.x = this.startX;
       this.y = this.startY;
+      // When this is set to true, the player is on the winning y coordinate
+      this.victory = false;
       this.sprite = 'images/char-boy.png';
   }
     update() {
@@ -92,7 +94,7 @@ class Hero {
         // 65 is the offset to center the player
         // 65 - 83 = -18 which is the y-coordinates of the river tiles
         if (this.y === -18) {
-            console.log("CONGRATULATIONS!");
+            alert("CONGRATULATIONS!");
             this.resetHero();
         }
     }
