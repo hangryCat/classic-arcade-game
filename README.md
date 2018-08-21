@@ -9,7 +9,7 @@ If the player makes it to the river, an alert will appear congratulating the pla
 
 ## Usage
 
-You can see it live using the link below!
+You can see it live using the demo link!
 [Live Demo](https://hangrymayo.github.io/classic-arcade-game/)
 
 You can clone it with HTTPS URL:
