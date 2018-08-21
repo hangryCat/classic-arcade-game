@@ -221,9 +221,11 @@ const allEnemies = [];
 const enemy1 = new Enemy(-101, 0, 100);
 const enemy2 = new Enemy((-101 * 3), 83, 300);
 const enemy3 = new Enemy(-101, (83 * 2), 400);
+const enemy4 = new Enemy((101 * -4), 0, 450)
+const enemy5 = new Enemy((101 * -2), (83 * 2), 50)
 
 // Enemy bugs pushed to allEnemies array
-allEnemies.push(enemy1, enemy2, enemy3);
+allEnemies.push(enemy1, enemy2, enemy3, enemy4, enemy5);
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
