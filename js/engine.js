@@ -168,7 +168,12 @@ var Engine = (function(global) {
      * those sorts of things. It's only called once by the init() method.
      */
     function reset() {
-        // noop
+        // Values taken from the player object derived from the Hero constructor
+        // This function is to reset the player's starting position and victory conditions
+        // ...once user wins game
+        player.x = player.startX;
+        player.y = player.startY;
+        player.victory = false;
     }
 
     /* Go ahead and load all of the images we know we're going to need to
