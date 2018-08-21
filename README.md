@@ -1,6 +1,8 @@
-frontend-nanodegree-arcade-game
-===============================
+Udacity Front-End – Classic Arcade Game Clone
+=============================================
 
-Students should use this [rubric](https://review.udacity.com/#!/projects/2696458597/rubric) for self-checking their submission. Make sure the functions you write are **object-oriented** - either class functions (like Player and Enemy) or class prototype functions such as Enemy.prototype.checkCollisions, and that the keyword 'this' is used appropriately within your class and class prototype functions to refer to the object the function is called upon. Also be sure that the **readme.md** file is updated with your instructions on both how to 1. Run and 2. Play your arcade game.
+This is the classic frogger clone game. You are a player that is trying to cross to the river while trying to avoid collision with enemies (lady bugs). The enemies move unpredictably, so be careful! The player is allowed to move up, down, left and right and can even move back into the grassy area where no enemies will appear.
 
-For detailed instructions on how to get started, check out this [guide](https://docs.google.com/document/d/1v01aScPjSWCCWQLIpFqvg3-vXLH2e8_SZQKC8jNO0Dc/pub?embedded=true).
+If a collision occurs, the player is automatically transported to the start point and has to start over.
+
+If the player makes it to the river, an alert will appear congratulating the player's hard work. The game will automatically reset soon after and the player can play again.
