@@ -76,7 +76,7 @@ class Hero {
       this.y = this.startY;
       // When this is set to true, the player is on the winning y coordinate
       this.victory = false;
-      this.sprite = 'images/char-boy.png';
+      this.sprite = 'images/char-princess-girl.png';
   }
     update() {
         // Access to player's x and y position is available within this constructor
