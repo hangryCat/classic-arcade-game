@@ -1,58 +1,60 @@
 // Enemies our player must avoid
-var Enemy = function(x, y, speed) {
-    // The x/y/speed value is declared based on the values passed through the enemy object
-    this.x = x;
-    // The 'y' represents the argument being passed by the enemy bug object
-    // The number 65 will center the enemy on the tile
-    this.y = y + 65;
-    // The speed property/value will be used to pass in the different speed of each enemy
-    // The value/number will vary based on the argument passed in the enemy object
-    this.speed = speed;
-    // This step property references the size of each tile horizontally
-    // The enemy bug will only be moving horizontally (x axis)
-    this.step = 101;
-    // The boundary for which the enemy can move within
-    // By using 5, the enemy bug will one tile outside of the playing board
-    // Starting from 0 x axis (minus the 1st tile the bug is on 6 - 1 = 5)
-    this.boundary = this.step * 5;
-    // This property will reset the enemy 1 tile to the left of the playing board
-    this.resetEnemy = this.step * -1;
-    // The image/sprite for our enemies
-    // This uses a helper we've provided to easily load images
-    this.sprite = 'images/enemy-bug.png';
-};
+class Enemy {
+    constructor(x, y, speed) {
+        // The x/y/speed value is declared based on the values passed through the enemy object
+        this.x = x;
+        // The 'y' represents the argument being passed by the enemy bug object
+        // The number 65 will center the enemy on the tile
+        this.y = y + 65;
+        // The speed property/value will be used to pass in the different speed of each enemy
+        // The value/number will vary based on the argument passed in the enemy object
+        this.speed = speed;
+        // This step property references the size of each tile horizontally
+        // The enemy bug will only be moving horizontally (x axis)
+        this.step = 101;
+        // The boundary for which the enemy can move within
+        // By using 5, the enemy bug will one tile outside of the playing board
+        // Starting from 0 x axis (minus the 1st tile the bug is on 6 - 1 = 5)
+        this.boundary = this.step * 5;
+        // This property will reset the enemy 1 tile to the left of the playing board
+        this.resetEnemy = this.step * -1;
+        // The image/sprite for our enemies
+        // This uses a helper we've provided to easily load images
+        this.sprite = 'images/enemy-bug.png';
+    }
 
-// Update the enemy's position, required method for game
-// Parameter: dt, a time delta between ticks
-Enemy.prototype.update = function(dt) {
-    // Enemy is not controlled by player so automated code is necessary
-    // You should multiply any movement by the dt parameter
-    // which will ensure the game runs at the same speed for all computers
+    // Update the enemy's position, required method for game
+    // Parameter: dt, a time delta between ticks
+    update(dt) {
+        // Enemy is not controlled by player so automated code is necessary
+        // You should multiply any movement by the dt parameter
+        // which will ensure the game runs at the same speed for all computers
         // dt is the function parameter
-        // dt is declared in the engine.js file under main() function
+            // dt is declared in the engine.js file under main() function
 
-    // This function will check if enemy is still within the playing board
-    // If the enemy passes the playing board on the right side...
-    // ...the enemy's x/y pos will reset so it can move across the board again (loop)
+        // This function will check if enemy is still within the playing board
+        // If the enemy passes the playing board on the right side...
+        // ...the enemy's x/y pos will reset so it can move across the board again(loop)
 
-    if (this.x < this.boundary) {
-        // If the condition is true, the enemy will continue to move forward
-        // Increment x pos by (speed * dt)
-        // Multiplying by dt will give the enemy bug a constant speed across the board
-        this.x += this.speed * dt;
-    }
-    else {
-      // Reset enemy position to starting point
-      // The above if statement will start to loop again once the enemy pos resets..
-      // ..because of the code below
-      this.x = this.resetEnemy;
-    }
-};
+        if (this.x < this.boundary) {
+            // If the condition is true, the enemy will continue to move forward
+            // Increment x pos by (speed * dt)
+            // Multiplying by dt will give the enemy bug a constant speed across theboard
+            this.x += this.speed * dt;
+        }
+        else {
+            // Reset enemy position to starting point
+            // The above if statement will start to loop again once the enemy posresets..
+            // ..because of the code below
+            this.x = this.resetEnemy;
+        }
+    };
 
-// Draw the enemy on the screen, required method for game
-Enemy.prototype.render = function() {
-    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-};
+    // Draw the enemy on the screen, required method for game
+    render() {
+        ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+    };
+}
 
 class Hero {
     constructor() {
@@ -110,7 +112,7 @@ class Hero {
                 alert("CONGRATULATIONS! YOU WON THE GAME!!");
             }, 10);
         }
-    }
+    };
 
     render() {
         ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
@@ -118,7 +120,7 @@ class Hero {
         // drawImage method has a few arguments/parameter
         // The Resources object uses the get method to cache the sprite image as the first argument
         // The other 2 arguments are the x and y coordinates specified in the constructor above.
-    }
+    };
 
     handleInput(keyPress) {
         // The following could be achieved using a chain of if else statements as well
@@ -165,16 +167,18 @@ class Hero {
                 }
                 break;
         }
-    }
+    };
+
     // Once certain conditions are met (collision or win)
     // Player will reset to starting position
     resetHero() {
       this.x = this.startX;
       this.y = this.startY;
-    }
+    };
 }
 
 // Pseudo code used to create Hero class above
+// Keeping for future reference
 // HERO CLASS
     // CONSTRUCTOR
         // PROPERTIES
