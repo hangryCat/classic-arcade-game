@@ -57,6 +57,10 @@ var Engine = (function(global) {
          */
         if (player.victory === true) {
             win.cancelAnimationFrame(main);
+            setTimeout(function () {
+                reset();
+                win.requestAnimationFrame(main);
+            }, 100);
          }
         else {
             win.requestAnimationFrame(main);
