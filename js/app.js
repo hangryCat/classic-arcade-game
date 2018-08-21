@@ -2,19 +2,23 @@
 var Enemy = function(x, y, speed) {
     // The x/y/speed value is declared based on the values passed through the enemy object
     this.x = x;
-    // Centers the enemy
     // The 'y' represents the argument being passed by the enemy bug object
-    // The number 60 pushes the bug down from wherever the bug currently is
+    // The number 65 will center the enemy on the tile
     this.y = y + 65;
     // The speed property/value will be used to pass in the different speed of each enemy
+    // The value/number will vary based on the argument passed in the enemy object
     this.speed = speed;
     // This step property references the size of each tile horizontally
     // The enemy bug will only be moving horizontally (x axis)
     this.step = 101;
-    // The boundary for which the enemy bug can move within
+    // The boundary for which the enemy can move within
+    // By using 5, the enemy bug will one tile outside of the playing board
+    // Starting from 0 x axis (minus the 1st tile the bug is on 6 - 1 = 5)
     this.boundary = this.step * 5;
+    // This property will reset the enemy 1 tile to the left of the playing board
     this.resetEnemy = this.step * -1;
-    // The image/sprite for our enemies, this uses a helper we've provided to easily load images
+    // The image/sprite for our enemies
+    // This uses a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
 };
 
@@ -27,23 +31,20 @@ Enemy.prototype.update = function(dt) {
         // dt is the function parameter
         // dt is declared in the engine.js file under main() function
 
-    // The following method will check if enemy is still within tiles that are visible to player.
-    // If not, then the enemy's x and y pos needs to be reset so it can move across the tiles again (loop).
+    // This function will check if enemy is still within the playing board
+    // If the enemy passes the playing board on the right side...
+    // ...the enemy's x/y pos will reset so it can move across the board again (loop)
 
-    // If enemy is still within tile boundaries
-    // The code will run if the enemy bug is stil within the boundaries
-    // The 5 represent the 6th tile right outside the boundary
-        // Starting from the 0 x axis (minus the 1st tile the bug is on 6 - 1 = 5)
     if (this.x < this.boundary) {
-        // Move forward
+        // If the condition is true, the enemy will continue to move forward
         // Increment x pos by (speed * dt)
         // Multiplying by dt will give the enemy bug a constant speed across the board
-            // This happens as the computer loops through the code
         this.x += this.speed * dt;
     }
     else {
       // Reset enemy position to starting point
-      // The above if statement will continue to loop
+      // The above if statement will start to loop again once the enemy pos resets..
+      // ..because of the code below
       this.x = this.resetEnemy;
     }
 };
@@ -59,10 +60,16 @@ class Hero {
 
       // horizonStep is the distance between one block to another from the x axis
       // vertStep is the distance between the blocks on the y axis
+      // 101 and 83 is based off of the col and row provided in engine.js by Udacity
       this.horizonStep = 101;
       this.vertStep = 83;
       // The following is multiplied by 2 & 4 and moves the player to the tile accordingly
+      // Basically, it's...
+            // 101 * 2 = 202
+            // (83 * 4) + 65
       this.startX = this.horizonStep * 2;
+      // The number 65 is used to keep the player and enemy aligned when they collide
+      // 65 was used in the Enemy constructor to center the enemy on the tile
       this.startY = (this.vertStep * 4) + 65;
       // This sets the x and y axis of the player to the starting point of startX/Y
       this.x = this.startX;
@@ -75,24 +82,27 @@ class Hero {
         // Access to player's x and y position is available within this constructor
         // However, the enemy objects' x and y position is not
         // In order to access it, a for let-of loop is used
+
         // this.y === enemy.y
-            // Checks to see if the bug and player is on the same y axis
+            // Checks to see if the enemy and player is on the same y axis
         // enemy.x + enemy.step > this.x
             // Checks to see if the enemy's right side is > than the player's left side
         // enemy.x < this.x + this.vertStep
             // Checks to see if the enemy is < than the player's right side
-        // The steps for both enemy/player is reduced by half
+
+        // The steps for both enemy/player is reduced by half(/2)
             // This way, the area of collision is smaller
-            // To the user, the player and enemy actually collides
-            // Otherwise, it looks as though the player/enemy doesn't collide
+
+        // When a collision occurs, the player is reset to back to the startX/startY pos
         for (let enemy of allEnemies) {
             if ((this.y === enemy.y) && (enemy.x + enemy.step/2 > this.x) && (enemy.x < this.x + this.vertStep/2)) {
                 console.log("COLLISION!");
                 this.resetHero();
             }
         }
-        // 65 is the offset to center the player
-        // 65 - 83 = -18 which is the y-coordinates of the river tiles
+        // Since 65 is the offset to center the player and enemy
+        // 65 - 83 = -18 which is the y-coordinates of the river tiles..
+        // ..where collision is possible
         if (this.y === -18) {
             this.victory = true;
             // The timeout function allows the player to reach the river before appearing
@@ -105,53 +115,58 @@ class Hero {
     render() {
         ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
         // ctx is for 2d canvas
-        // drawImage method has few arguments/parameter
-        // The Resources object uses the get method to cache the sprite image as the first argument.\
+        // drawImage method has a few arguments/parameter
+        // The Resources object uses the get method to cache the sprite image as the first argument
         // The other 2 arguments are the x and y coordinates specified in the constructor above.
     }
 
     handleInput(keyPress) {
         // The following could be achieved using a chain of if else statements as well
+            // A switch statement looks "cleaner"
         // This switch statement checks the value of keyPress
             // If there is a match, then the following code will execute
+
+        // There are conditions set by if statements to keep player within the board
+        // Using the horizonStep and vertStep properties help calculate the tiles
         switch(keyPress) {
             case 'left':
                 // The left boundaries of the x axis is 0
-                // The player will not be able to move past 0 (out of boundaries)
+                // Player shouldn't be allowed to move past it into the neg. coordinates
+
+                // The following if statement only allows player to move..
+                // ..if their x coordinate is greater than 0
                 if (this.x > 0) {
-                  // Subtracting x would move the character left
+                    // Subtracting x would move the player left by 101 coordinate
                   this.x -= this.horizonStep;
                 }
                 break;
             case 'right':
-                // Using the horizonStep prop help calculate the tiles
                 // Left most block starts at 0 and 1 step puts player at the 2nd tiles
                 // Therefore, 4 steps/tile over will reach the edge of boundaries
-                // If statement will result in false with any tiles beyond that 4th tile
+                // if statement will result in false with any tiles beyond that 4th tile
                 if (this.x < this.horizonStep * 4) {
-                    // Adding to x would move the character right
+                    // Adding to x would move the character right by 101 coordinates
                     this.x += this.horizonStep;
                 }
                 break;
             case 'up':
                 // The y axis boundaries is 0
-                // The player will not be able to move past 0 (out of boundaries)
                 if (this.y > 0) {
-                    // Decreasing y would move the character up (remember top left corner would be 0,0).
+                    // Decreasing y would move the character up by 83 coordinates
+                    // (remember top left corner would be 0,0)
                     this.y -= this.vertStep;
                 }
                 break;
             case 'down':
                 // See comment above for 'right'
-                // This is multiplied by 5 instead of 4 because there are more tiles horizontally
                 if (this.y < this.vertStep * 4) {
-                    // Increasing y would move the character down
+                    // Increasing y would move the character down by 83 coordinates
                     this.y += this.vertStep;
                 }
                 break;
         }
     }
-    // Once certain conditions are met (collision, win)
+    // Once certain conditions are met (collision or win)
     // Player will reset to starting position
     resetHero() {
       this.x = this.startX;
@@ -159,6 +174,7 @@ class Hero {
     }
 }
 
+// Pseudo code used to create Hero class above
 // HERO CLASS
     // CONSTRUCTOR
         // PROPERTIES
@@ -182,7 +198,7 @@ class Hero {
                 // Set x and y to starting position of x and y
                     // For when player makes contact with an enemy or reaches winning tile
 
-// Now instantiate your objects.
+// Now instantiate your objects
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
 
@@ -196,11 +212,13 @@ const player = new Hero();
 // Empty allEnemies array
 const allEnemies = [];
 
-// Enemy bug object created from Enemy constructor
+// Enemy object created from Enemy constructor
 // The arguments here will pass as values in the Enemy constructor
 // The value of x and y needs to be the same as what's declared above
-// To put the bug in a different spot, just multiply the value
-const enemy1 = new Enemy(-101, 0, 200);
+    // Horizontal movement is set to 101
+    // Vertical movement is set to 83
+    // To put the enemy in a different position, just multiply the value
+const enemy1 = new Enemy(-101, 0, 100);
 const enemy2 = new Enemy((-101 * 3), 83, 300);
 const enemy3 = new Enemy(-101, (83 * 2), 400);
 
