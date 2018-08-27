@@ -10,10 +10,10 @@ If the player makes it to the river, an alert will appear congratulating the pla
 ## Usage
 
 You can see it live using the demo link!
-[Live Demo](https://hangrymayo.github.io/classic-arcade-game/)
+[Live Demo](https://hangryCat.github.io/classic-arcade-game/)
 
 You can clone it with HTTPS URL:
 
 ```
-$ [sudo] git clone https://github.com/hangryMayo/classic-arcade-game.git
+$ [sudo] git clone https://github.com/hangryCat/classic-arcade-game.git
 ```
